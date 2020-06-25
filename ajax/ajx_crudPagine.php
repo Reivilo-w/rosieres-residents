@@ -31,14 +31,67 @@ switch ($_GET['method']) {
         $xls = $sheet->toArray();
         array_shift($xls);
 
+        $formated = [];
+        foreach ($xls as $value) {
+            $formated[] = [
+                'prenom' => $value[1],
+                'nom' => $value[2],
+                'genre' => $value[3],
+                'pays' => $value[4],
+                'age' => $value[5],
+                'naissance' => $value[6],
+                'id' => $value[7],
+            ];
+        }
+
+        $authorized_column = ['prenom','nom','genre','pays','age','naissance'];
+
+        # Gestion des filtres
+        /*
+        if(isset($_GET['filters']) && is_array($_GET['filters'])) {
+            foreach ($_GET['filters'] as $filter => $value) {
+                if(!(in_array($filter,$authorized_filters))) {
+                    echoError('Le filtre "'.$filter.'" n\'est pas autorisé.');
+                }
+            }
+        }
+        array_multisort($formated,array_column($formated,'cle'),SORT_ASC);*/
+
+
+        # Gestion des recherches
+        if(isset($_GET['search']) && is_array($_GET['search'])) {
+            $finded = [];
+            foreach ($formated as $element) {
+                $trouve = 0;
+                foreach ($_GET['search'] as $column => $value) {
+                    if(!in_array($column,$authorized_column)) {
+                        echoError('Le champ "'.$column.'" est invalide.');
+                    }
+
+                    if(isset($element[$column])) {
+                        if(strpos(strtolower($element[$column]),strtolower($value)) !== false) {
+                            $trouve++;
+                        }
+                    }
+                }
+
+                if($trouve === count($_GET['search'])) {
+                    $finded[] = $element;
+                }
+            }
+
+            $formated = $finded;
+        }
+
+        # Gestion de la pagination
         $nbItems = $_GET['nbItem'] ?? 20;
         $page = $_GET['page'] ?? 1;
 
         $start = ($page - 1) * $nbItems;
         $end = $page * $nbItems;
         for ($i = $start; $i < $end; $i++) {
-            if (isset($xls[$i])) {
-                $data[] = $xls[$i];
+            if (isset($formated[$i])) {
+                $data[] = $formated[$i];
             }
         }
 
@@ -66,7 +119,7 @@ switch ($_GET['method']) {
             $iterator++;
         }*/
 
-        echoSuccess('Données récupérées avec succès.', ['data' => $data, 'total' => count($xls)]);
+        echoSuccess('Données récupérées avec succès.', ['data' => $data, 'total' => count($formated)]);
         break;
     default:
         echoError('Aucune méthode donnée');
