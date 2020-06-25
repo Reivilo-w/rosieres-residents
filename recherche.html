@@ -7,43 +7,33 @@
     </head>
 
     <body>
-        <button data-action="reintialiser">Réintialiser les filtres</button>
-        <button data-action="rechercher">Rechercher</button>
-        
-        <input type="number" name="nbItem" min="5" max="50">
         <table>
             <thead>
                 <tr>
-                    <th data-column="prenom">
-                        <p class="is-sortable"><img src="" style="display: none;">Prénom</p>
-                        <p><input type="text" class="recherche"></p>
+                    <th>
+                        <p data-column="NOM"><img src="">The table header</p>
+                        <p><input type="text" name="recherche_NOM"></p>
                     </th>
-                    <th data-column="nom">
-                        <p class="is-sortable"><img src="" style="display: none;">Nom</p>
-                        <p><input type="text" class="recherche"></p>
-                    </th>
-                    <th data-column="genre">
-                        <p class="is-sortable"><img src="" style="display: none;">Genre</p>
-                        <p><input type="text" class="recherche"></p>
-                    </th>
-                    <th data-column="pays">
-                        <p class="is-sortable"><img src="" style="display: none;">Pays</p>
-                        <p><input type="text" class="recherche"></p>
-                    </th>
-                    <th data-column="age">
-                        <p class="is-sortable"><img src="" style="display: none;">Age</p>
-                        <p><input type="text" class="recherche"></p>
-                    </th>
-                    <th data-column="naissance">
-                        <p class="is-sortable"><img src="" style="display: none;">Date de naissance</p>
-                        <p><input type="text" class="recherche"></p>
+                    <th data-column="PRENOM">
+                        <p><img src="">The table header</p>
+                        <p><input type="text" name="recherche_PRENOM"></p>
                     </th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                <tr>
+                    <td>Mouillet</td>
+                    <td>Lucas</td>
+                </tr>
+                <tr>
+                    <td>Mouillet</td>
+                    <td>Encore Lucas</td>
+                </tr>
+            </tbody>
         </table>
-        <p>TODO recherche date de naissance : 2 dates</p>
-        <p>TODO choix de la page à afficher</p>
+        
+        <button data-action="reintialiser">Réintialiser les filtres</button>
+        <button data-action="rechercher">Rechercher</button>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/pagine.js"></script>
