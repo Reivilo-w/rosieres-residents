@@ -1,4 +1,5 @@
 var pageAffichee = 1;
+var nbItem = 20;
 var orderBy = {};
 var icons = {
     asc: 'imgs/chevron-up.svg',
@@ -9,27 +10,38 @@ var icons = {
 function refreshPagine() {
     pageAffichee = 1;
     var params = {
-        search: [], //TODO à finir
+        search: {},
         page: pageAffichee,
         filters: orderBy,
-        nbItem: 50 //TODO pouvoir choisir
+        nbItem: nbItem
     };
+
+    $('tbody').html('<tr><td colspan="100%">Chargement...</td></tr>');
+
+    $('th[data-column]').each(function (index) {
+        var val = $(this).find('input.recherche').val();
+        if (val !== '') {
+            console.log($(this).data('column'), val)
+            params.search[$(this).data('column')] = val;
+        }
+    });
+
     $.get('./ajax/ajx_crudPagine.php?method=recherche', params, function (result) {
-        console.log(result);
+        $('tbody').html('');
         for (k in result.data) {
             var item = result.data[k];
-            $('table').append('<tr><td>' + item[1] + '</td><td>' + item[2] + '</td><td>' + item[3] + '</td><td>' + item[4] + '</td><td>' + item[5] + '</td><td>' + item[6] + '</td><td>' + item[7] + '</td></tr>'
-                    );
+            $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
         }
     }, 'json');
 }
 
 
 $(function () {
+    $('[name=nbItem]').val(nbItem);
     refreshPagine();
 
-    $('[data-column]').on('click', function () {
-        var column = $(this).data('column');
+    $('.is-sortable').on('click', function () {
+        var column = $(this).closest('[data-column]').data('column');
         var icon = $(this).find('img');
         if (orderBy[column] !== undefined) {
             if (orderBy[column] === 'asc') {
@@ -51,12 +63,18 @@ $(function () {
     });
 
     $('[data-action="reintialiser"]').on('click', function () {
-        //TODO reset filtres
-        refreshPagine()
+        $('input.recherche').val('');
+        $('.is-sortable img').attr('src', '').hide('fast');
+        orderBy = {};
+        refreshPagine();
     });
 
     $('[data-action="rechercher"]').on('click', function () {
         refreshPagine();
+    });
+
+    $('[name=nbItem]').on('blur', function () {
+        nbItem = $(this).val();
     });
 
     //TODO au click sur un numéro de page -> changer pageAffichee + refreshPagine()
