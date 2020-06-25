@@ -16,6 +16,8 @@ switch ($_GET['method']) {
 
         #$_GET['filters']; # ([column => asc, column2 => asc])
         #$_GET['search']; # [column=> valueRecherche]
+        #$_GET['page'];
+        #20 items par page
 
         #if(isset($_GET['filters']))
         #if(isset($_GET['search']))
@@ -36,6 +38,15 @@ switch ($_GET['method']) {
             $id = $sheet->getCell('H' . $iterator)->getValue();
 
             # Faire les traitements ici
+            $data[] = [
+                'prenom' => $prenom,
+                'nom' => $nom,
+                'genre' => $genre,
+                'pays' => $pays,
+                'age' => $age,
+                'naissance' => $naissance,
+                'id' => $id,
+            ];
         }
 
         echoSuccess('Données récupérées avec succès.', ['data' => $data]);
