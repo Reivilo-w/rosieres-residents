@@ -1,9 +1,41 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Test</title>
-	</head>
-	<body>
-		<b>Hello there !</b>
-	</body>
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Commune de Rosières</title>
+    </head>
+
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p data-column="NOM"><img src="">The table header</p>
+                        <p><input type="text" name="recherche_NOM"></p>
+                    </th>
+                    <th data-column="PRENOM">
+                        <p><img src="">The table header</p>
+                        <p><input type="text" name="recherche_PRENOM"></p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mouillet</td>
+                    <td>Lucas</td>
+                </tr>
+                <tr>
+                    <td>Mouillet</td>
+                    <td>Encore Lucas</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <button data-action="reintialiser">Réintialiser les filtres</button>
+        <button data-action="rechercher">Rechercher</button>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/pagine.js"></script>
+    </body>
 </html>

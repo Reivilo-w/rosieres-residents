@@ -1,12 +1,13 @@
 var pageAffichee = 1;
 var orderBy = {};
 var icons = {
-    asc: 'img/expand_less.svg',
-    desc: 'img/expand_more.svg',
+    asc: 'imgs/chevron-up.svg',
+    desc: 'imgs/chevron-down.svg',
     none: ''
 };
 
 function refreshPagine() {
+    pageAffichee = 1;
     var params = {
         search: [], //TODO à finir
         page: pageAffichee,
@@ -47,13 +48,16 @@ $(function () {
             icon.show('fast');
             $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
-        pageAffichee = 1;
-        refreshPagine();
     });
 
-    //TODO au click sur "Rechercher" -> refreshPagine()
+    $('[data-action="reintialiser"]').on('click', function () {
+        //TODO reset filtres
+        refreshPagine()
+    });
 
-    //TODO au click sur "Réintialiser" -> reset filtres + refreshPagine()
+    $('[data-action="rechercher"]').on('click', function () {
+        refreshPagine();
+    });
 
     //TODO au click sur un numéro de page -> changer pageAffichee + refreshPagine()
 });
