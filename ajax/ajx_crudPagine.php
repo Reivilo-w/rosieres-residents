@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/functions.php';
 $file = dirname(__DIR__) . '/data/example.xls';
 
@@ -47,6 +47,7 @@ switch ($_GET['method']) {
                 'naissance' => $naissance,
                 'id' => $id,
             ];
+            $iterator++;
         }
 
         echoSuccess('Données récupérées avec succès.', ['data' => $data]);
