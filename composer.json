@@ -1,0 +1,10 @@
+{
+    "name": "olivier/rosieres-residents",
+    "authors": [
+        {
+            "name": "Olivier Wysocinski",
+            "email": "olivier.wys@gmail.com"
+        }
+    ],
+    "require": {}
+}
