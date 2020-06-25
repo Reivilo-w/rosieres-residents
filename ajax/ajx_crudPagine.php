@@ -41,41 +41,49 @@ switch ($_GET['method']) {
                 'age' => $value[5],
                 'naissance' => $value[6],
                 'id' => $value[7],
+                'drapeau' => ($value[4] === 'France' ? 'fr-fr' : (($value[4] === 'Great Britain') ? 'en-en' : 'en-us'))
             ];
         }
 
-        $authorized_column = ['prenom','nom','genre','pays','age','naissance'];
+        $authorized_column = ['prenom', 'nom', 'genre', 'pays', 'age', 'naissance', 'id'];
 
         # Gestion des filtres
-        /*
-        if(isset($_GET['filters']) && is_array($_GET['filters'])) {
-            foreach ($_GET['filters'] as $filter => $value) {
-                if(!(in_array($filter,$authorized_filters))) {
-                    echoError('Le filtre "'.$filter.'" n\'est pas autorisé.');
+        if (isset($_GET['filters']) && is_array($_GET['filters'])) {
+            $args = [];
+            foreach ($_GET['filters'] as $filter => $sort) {
+                if (!in_array($filter, $authorized_column)) {
+                    echoError('Le filtre "' . $filter . '" est invalide.');
                 }
+                $args[] = array_column($formated, $filter);
+                $args[] = ($sort === 'asc') ? SORT_ASC : SORT_DESC;
             }
+
+            $args[] = &$formated;
+            call_user_func_array('array_multisort', $args);
+            //var_dump($formated);
+            //array_multisort(array_column($formated, 'id'), SORT_DESC, $formated);
         }
-        array_multisort($formated,array_column($formated,'cle'),SORT_ASC);*/
+        //array_multisort($formated,array_column($formated,'cle'),SORT_ASC);
 
 
         # Gestion des recherches
-        if(isset($_GET['search']) && is_array($_GET['search'])) {
+        if (isset($_GET['search']) && is_array($_GET['search']) && count($_GET['search']) > 0) {
             $finded = [];
             foreach ($formated as $element) {
                 $trouve = 0;
                 foreach ($_GET['search'] as $column => $value) {
-                    if(!in_array($column,$authorized_column)) {
-                        echoError('Le champ "'.$column.'" est invalide.');
+                    if (!in_array($column, $authorized_column)) {
+                        echoError('Le champ "' . $column . '" est invalide.');
                     }
 
-                    if(isset($element[$column])) {
-                        if(strpos(strtolower($element[$column]),strtolower($value)) !== false) {
+                    if (isset($element[$column])) {
+                        if (strpos(strtolower($element[$column]), strtolower($value)) !== false) {
                             $trouve++;
                         }
                     }
                 }
 
-                if($trouve === count($_GET['search'])) {
+                if ($trouve === count($_GET['search'])) {
                     $finded[] = $element;
                 }
             }
@@ -103,10 +111,7 @@ switch ($_GET['method']) {
             $age = $sheet->getCell('F' . $iterator)->getValue();
             $naissance = $sheet->getCell('G' . $iterator)->getValue();
             $id = $sheet->getCell('H' . $iterator)->getValue();
-
             # Faire les traitements ici
-
-
             $data[] = [
                 'prenom' => $prenom,
                 'nom' => $nom,
