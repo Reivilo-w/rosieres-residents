@@ -1,15 +1,26 @@
 var pageAffichee = 1;
 var orderBy = {};
 var icons = {
-    asc: 'expand_less',
-    desc: 'expand_more',
+    asc: 'img/expand_less.svg',
+    desc: 'img/expand_more.svg',
     none: ''
 };
 
 function refreshPagine() {
-    //{page: pageAffichee, column: orderBy.column, order: orderBy.order}
-    //URL, selecteur css du contenu, selecteur css des pages, nbItemsParPage
-    console.log("TODO afficher le contenu du pagine en fonction des paramètres de filtrages")
+    var params = {
+        search: [], //TODO à finir
+        page: pageAffichee,
+        filters: orderBy,
+        nbItem: 50 //TODO pouvoir choisir
+    };
+    $.get('./ajax/ajx_crudPagine.php?method=recherche', params, function (result) {
+        console.log(result);
+        for (k in result.data) {
+            var item = result.data[k];
+            $('table').append('<tr><td>' + item[1] + '</td><td>' + item[2] + '</td><td>' + item[3] + '</td><td>' + item[4] + '</td><td>' + item[5] + '</td><td>' + item[6] + '</td><td>' + item[7] + '</td></tr>'
+                    );
+        }
+    }, 'json');
 }
 
 
@@ -18,23 +29,23 @@ $(function () {
 
     $('[data-column]').on('click', function () {
         var column = $(this).data('column');
-        var icon = $(this).find('i');
+        var icon = $(this).find('img');
         if (orderBy[column] !== undefined) {
-            if (orderBy[column] === 'ASC') {
-                orderBy[column] = 'DESC';
-                icon.html(icons.desc);
-                $('.orderBy').find('[name="orderBy[' + column + ']"]').val('DESC');
-            } else if (orderBy[column] === 'DESC') {
+            if (orderBy[column] === 'asc') {
+                orderBy[column] = 'desc';
+                icon.attr('src', icons.desc);
+                $('.orderBy').find('[name="orderBy[' + column + ']"]').val('desc');
+            } else if (orderBy[column] === 'desc') {
                 delete orderBy[column];
-                icon.html(icons.none);
+                icon.attr('src', icons.none);
                 icon.hide('fast');
                 $('.orderBy').find('[name="orderBy[' + column + ']"]').remove();
             }
         } else {
-            orderBy[column] = 'ASC';
-            icon.html(icons.asc);
+            orderBy[column] = 'asc';
+            icon.attr('src', icons.asc);
             icon.show('fast');
-            $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="ASC">'));
+            $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
         pageAffichee = 1;
         refreshPagine();
