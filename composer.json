@@ -6,5 +6,7 @@
             "email": "olivier.wys@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.13"
+    }
 }
