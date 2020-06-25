@@ -27,8 +27,22 @@ switch ($_GET['method']) {
         $sheet = $spreadsheet->getActiveSheet();
 
         $data = [];
-        $iterator = 2;
-        foreach ($sheet->getRowIterator() as $row) {
+
+        $xls = $sheet->toArray();
+        array_shift($xls);
+
+        $nbItems = $_GET['nbItem'] ?? 20;
+        $page = $_GET['page'] ?? 1;
+
+        $start = ($page - 1) * $nbItems;
+        $end = $page * $nbItems;
+        for ($i = $start; $i < $end; $i++) {
+            if (isset($xls[$i])) {
+                $data[] = $xls[$i];
+            }
+        }
+
+        /*foreach ($sheet->getRowIterator() as $row) {
             $prenom = $sheet->getCell('B' . $iterator)->getValue();
             $nom = $sheet->getCell('C' . $iterator)->getValue();
             $genre = $sheet->getCell('D' . $iterator)->getValue();
@@ -38,6 +52,8 @@ switch ($_GET['method']) {
             $id = $sheet->getCell('H' . $iterator)->getValue();
 
             # Faire les traitements ici
+
+
             $data[] = [
                 'prenom' => $prenom,
                 'nom' => $nom,
@@ -48,9 +64,9 @@ switch ($_GET['method']) {
                 'id' => $id,
             ];
             $iterator++;
-        }
+        }*/
 
-        echoSuccess('Données récupérées avec succès.', ['data' => $data]);
+        echoSuccess('Données récupérées avec succès.', ['data' => $data, 'total' => count($xls)]);
         break;
     default:
         echoError('Aucune méthode donnée');
