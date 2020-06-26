@@ -76,11 +76,22 @@ switch ($_GET['method']) {
                         echoError('Le champ "' . $column . '" est invalide.');
                     }
 
-                    if (isset($element[$column])) {
-                        if (strpos(strtolower($element[$column]), strtolower($value)) !== false) {
+                    if ($column === 'naissance') {
+                        $dates = explode(' - ', trim($value));
+                        $timeAvant = strtotime(str_replace('/', '-', $dates[0]));
+                        $timeApres = strtotime(str_replace('/', '-', $dates[1]));
+                        $timeDate = strtotime(str_replace('/', '-', $element['naissance']));
+                        if ($timeAvant <= $timeDate && $timeDate <= $timeApres) {
                             $trouve++;
                         }
+                    } else {
+                        if (isset($element[$column])) {
+                            if (strpos(strtolower($element[$column]), strtolower($value)) !== false) {
+                                $trouve++;
+                            }
+                        }
                     }
+
                 }
 
                 if ($trouve === count($_GET['search'])) {

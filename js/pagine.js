@@ -99,7 +99,7 @@ $(function () {
     $('[data-action="reintialiser"]').on('click', function () {
         $('input.recherche').val('');
         $('[name="pays"]').val('').change();
-        $('.is-sortable img').attr('src', '').hide('fast');
+        $('.is-sortable').find('span.up,span.down').hide('fast');
         orderBy = {};
         refreshPagine();
     });
