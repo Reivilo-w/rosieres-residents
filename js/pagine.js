@@ -26,7 +26,7 @@ function refreshPagine() {
         } else {
             for (var k in result.data) {
                 var item = result.data[k];
-                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
+                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img title="' + item.pays + '" src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
             }
         }
         $("#pages").pxpaginate({
@@ -44,16 +44,19 @@ $(function () {
         autoUpdateInput: false,
         locale: {
             format: 'DD/MM/YYYY',
-            cancelLabel: 'Clear'
+            cancelLabel: 'Vider',
+            applyLabel: 'Appliquer'
         }
     });
 
     $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+        refreshPagine();
     });
 
     $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
         $(this).val('');
+        refreshPagine();
     });
 
     $("#pages").pxpaginate({
@@ -62,7 +65,6 @@ $(function () {
             refreshPagine();
         }
     });
-    refreshPagine();
 
 
     $('.is-sortable').on('click', function () {
@@ -94,10 +96,6 @@ $(function () {
         refreshPagine();
     });
 
-    $('[data-action="rechercher"]').on('click', function () {
-        refreshPagine();
-    });
-
     $.fn.enterKey = function (fnc) {
         return this.each(function () {
             $(this).keypress(function (ev) {
@@ -110,6 +108,10 @@ $(function () {
     }
 
     $('[data-column] input').enterKey(function () {
+        refreshPagine();
+    });
+
+    $('[name="nbItem"]').bind('keyup mouseup', function () {
         refreshPagine();
     });
 });
