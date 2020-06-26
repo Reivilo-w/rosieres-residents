@@ -1,10 +1,5 @@
 var pageAffichee = 1;
 var orderBy = {};
-var icons = {
-    asc: 'imgs/chevron-up.svg',
-    desc: 'imgs/chevron-down.svg',
-    none: ''
-};
 
 function refreshPagine() {
     var params = {
@@ -43,6 +38,8 @@ function refreshPagine() {
 
 
 $(function () {
+    $('span.up').hide();
+    $('span.down').hide();
     $('input[name="dates"]').daterangepicker({
         autoUpdateInput: false,
         locale: {
@@ -70,22 +67,22 @@ $(function () {
 
     $('.is-sortable').on('click', function () {
         var column = $(this).closest('[data-column]').data('column');
-        var icon = $(this).find('img');
         if (orderBy[column] !== undefined) {
             if (orderBy[column] === 'asc') {
                 orderBy[column] = 'desc';
-                icon.attr('src', icons.desc);
+                $(this).find('span.down').show('fast');
+                $(this).find('span.up').hide('fast');
                 $('.orderBy').find('[name="orderBy[' + column + ']"]').val('desc');
             } else if (orderBy[column] === 'desc') {
                 delete orderBy[column];
-                icon.attr('src', icons.none);
-                icon.hide('fast');
                 $('.orderBy').find('[name="orderBy[' + column + ']"]').remove();
+                $(this).find('span.up').hide('fast');
+                $(this).find('span.down').hide('fast');
             }
         } else {
             orderBy[column] = 'asc';
-            icon.attr('src', icons.asc);
-            icon.show('fast');
+            $(this).find('span.up').show('fast');
+            $(this).find('span.down').hide('fast');
             $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
     });
