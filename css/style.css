@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "triplex";
+    src: url('../font/Triseel.ttf');
+}
+
 body {
     background-color: #555955;
     margin: 0;
@@ -65,6 +70,7 @@ header hr {
     background-color: white;
     display: flex;
     justify-content: center;
+    font-family: "triplex", Helvetica, Arial, sans-serif;
 }
 
 
@@ -76,10 +82,17 @@ header hr {
     color: white;
     font-weight: bold;
 
+    cursor: pointer;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.pagination div:hover{
+    box-shadow: 1px 4px 5px #00000033;
+}
+
 @media screen and (min-width: 340px) {
     .pagination div {
         width: 15px;
