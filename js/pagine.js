@@ -26,7 +26,7 @@ function refreshPagine() {
         } else {
             for (var k in result.data) {
                 var item = result.data[k];
-                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
+                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img title="' + item.pays + '" src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
             }
         }
         $("#pages").pxpaginate({
@@ -44,16 +44,19 @@ $(function () {
         autoUpdateInput: false,
         locale: {
             format: 'DD/MM/YYYY',
-            cancelLabel: 'Clear'
+            cancelLabel: 'Vider',
+            applyLabel: 'Appliquer'
         }
     });
 
     $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+        refreshPagine();
     });
 
     $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
         $(this).val('');
+        refreshPagine();
     });
 
     $("#pages").pxpaginate({
@@ -63,7 +66,6 @@ $(function () {
         }
     });
     refreshPagine();
-
 
     $('.is-sortable').on('click', function () {
         var column = $(this).closest('[data-column]').data('column');
@@ -85,16 +87,32 @@ $(function () {
             $(this).find('span.down').hide('fast');
             $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
+        refreshPagine();
     });
 
     $('[data-action="reintialiser"]').on('click', function () {
         $('input.recherche').val('');
-        $('.is-sortable img').attr('src', '').hide('fast');
+        $('.is-sortable').find('span.up,span.down').hide('fast');
         orderBy = {};
         refreshPagine();
     });
 
-    $('[data-action="rechercher"]').on('click', function () {
+    $.fn.enterKey = function (fnc) {
+        return this.each(function () {
+            $(this).keypress(function (ev) {
+                var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+                if (keycode == '13') {
+                    fnc.call(this, ev);
+                }
+            })
+        })
+    }
+
+    $('[data-column] input').enterKey(function () {
+        refreshPagine();
+    });
+
+    $('[name="nbItem"]').bind('keyup mouseup', function () {
         refreshPagine();
     });
 });
