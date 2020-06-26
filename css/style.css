@@ -1,0 +1,96 @@
+body {
+    background-color: #555955;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        margin: 15px 4vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin: 15px 0vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .marge_mobile {
+        margin-left: 4vw;
+        margin-width: 4vw;
+    }
+}
+
+header {
+    background-image: url("../imgs/banniere.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+@media screen and (min-width: 768px) {
+    header img {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 768px) and (min-width: 340px) {
+    header img {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 340px) {
+    header img {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+header hr {
+    background-color: #FFF500;
+    width: 100%;
+    height: 9px;
+    border: none;
+    margin: 0;
+}
+
+
+.pagination{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+
+.pagination div{
+    background-color: #017EFD;
+    border-radius: 200px;
+    margin: 0 10px;
+
+    color: white;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (min-width: 340px) {
+    .pagination div {
+        width: 15px;
+        height: 15px;
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 340px) {
+    .pagination div {
+        width: 10px;
+        height: 10px;
+        padding: 5px;
+    }
+}
