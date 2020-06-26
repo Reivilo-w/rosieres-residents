@@ -4,6 +4,9 @@
         <meta charset="utf-8">
 
         <title>Commune de Rosières</title>
+
+        <link href="css/px-pagination.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     </head>
 
     <body>
@@ -36,19 +39,20 @@
                     </th>
                     <th data-column="naissance">
                         <p class="is-sortable"><img src="" style="display: none;">Date de naissance</p>
-                        <p><input type="text" class="recherche"></p>
+                        <p><input type="text" class="recherche" name="dates"></p>
                     </th>
                 </tr>
             </thead>
             <tbody></tbody>
             <tfoot>
-                <tr><td colspan="100" style="text-align: center;"></td></tr>
+                <tr><td colspan="100"><div id="pages"></div></td></tr>
             </tfoot>
         </table>
-        <p>TODO recherche date de naissance : 2 dates</p>
-        <p>TODO choix de la page à afficher</p>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script src="js/px-pagination.js"></script>
         <script src="js/pagine.js"></script>
     </body>
 </html>

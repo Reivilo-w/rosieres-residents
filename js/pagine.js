@@ -1,5 +1,4 @@
 var pageAffichee = 1;
-var nbItem = 20;
 var orderBy = {};
 var icons = {
     asc: 'imgs/chevron-up.svg',
@@ -8,12 +7,11 @@ var icons = {
 };
 
 function refreshPagine() {
-    pageAffichee = 1;
     var params = {
         search: {},
         page: pageAffichee,
         filters: orderBy,
-        nbItem: nbItem
+        nbItem: $('[name=nbItem]').val()
     };
 
     $('tbody').html('<tr><td colspan="100%">Chargement...</td></tr>');
@@ -21,26 +19,54 @@ function refreshPagine() {
     $('th[data-column]').each(function (index) {
         var val = $(this).find('input.recherche').val();
         if (val !== '') {
-            console.log($(this).data('column'), val)
             params.search[$(this).data('column')] = val;
         }
     });
 
     $.get('./ajax/ajx_crudPagine.php?method=recherche', params, function (result) {
         $('tbody').html('');
-        $('tfoot').html('');
-        for (k in result.data) {
-            var item = result.data[k];
-            $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
+        if (result.data.length === 0) {
+            pageAffichee = 1;
+            $('tbody').append('<tr><td colspan="100">Aucun résultat</td></tr>');
+        } else {
+            for (var k in result.data) {
+                var item = result.data[k];
+                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
+            }
         }
-        $('tfoot').append('');
+        $("#pages").pxpaginate({
+            currentpage: params.page,
+            totalPageCount: Math.ceil(result.total / params.nbItem)
+        });
     }, 'json');
 }
 
 
 $(function () {
-    $('[name=nbItem]').val(nbItem);
+    $('input[name="dates"]').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            format: 'DD/MM/YYYY',
+            cancelLabel: 'Clear'
+        }
+    });
+
+    $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+    });
+
+    $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
+        $(this).val('');
+    });
+
+    $("#pages").pxpaginate({
+        callback: function (pagenumber) {
+            pageAffichee = pagenumber;
+            refreshPagine();
+        }
+    });
     refreshPagine();
+
 
     $('.is-sortable').on('click', function () {
         var column = $(this).closest('[data-column]').data('column');
@@ -74,10 +100,4 @@ $(function () {
     $('[data-action="rechercher"]').on('click', function () {
         refreshPagine();
     });
-
-    $('[name=nbItem]').on('blur', function () {
-        nbItem = $(this).val();
-    });
-
-    //TODO au click sur un numéro de page -> changer pageAffichee + refreshPagine()
 });
