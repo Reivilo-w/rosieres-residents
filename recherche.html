@@ -4,48 +4,133 @@
         <meta charset="utf-8">
 
         <title>Commune de Rosières</title>
+        <link rel="stylesheet" type="text/css" href="css/px-pagination.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="Stylesheet" type="text/css" href="css/wSelect.css"/>
+        <style>
+            @font-face {
+                font-family: 'triplex';
+                src: url('font/triplex.ttf');
+            }
+            #table {
+                background-color: white;
+                padding: 30px;
+                margin: 0 auto;
+                border: none;
+            }
+            #table input {
+                border: 1px #DCDDDC solid;
+                background-color: #F5F5F5;
+                width: 100%;
+                border-radius: 4px;
+                margin-top: .5em;
+                padding: 2px;
+            }
+            #table th {
+                width: 100px;
+                padding: 0 15px;
+            }
+            #table p {
+                margin: 0;
+            }
+            #table p:nth-child(1) {
+                font-family: 'triplex';
+            }
+            #table p:nth-child(1) span {
+                font-family: 'arial';
+            }
+            #table p:nth-child(1) .up,#table p:nth-child(1) .down {
+                margin-left: .5em;
+            }
+            #table tr th {
+                background-color: #FFF;
+                padding-bottom: 10px;
+            }
+            #table tr td {
+                padding: 10px;
+                font-family: 'triplex';
+            }
+            #table tr:nth-child(odd) {
+                background-color: #E6E6E6;
+            }
+            #table tr:nth-child(even) {
+                background-color: #F2F2F2;
+            }
+            #table tfoot {
+                background-color: white;
+                border: none;
+            }
+            #table tfoot tr td {
+                background-color: white;
+            }
+        </style>
     </head>
 
     <body>
+        <!--BANNiERE-->
+        <header>
+            <img src="imgs/logo.png">
+            <hr>
+        </header>
+
+<div class="container_annuaire">
+    <div class="btn_gauche">
+        <div class="res_page">
+            <p>Résultats par pages :</p>
+            <input type="number" name="nbItem" value="15" min="5" max="50">
+        </div>
         <button data-action="reintialiser">Réintialiser les filtres</button>
-        <button data-action="rechercher">Rechercher</button>
-        
-        <input type="number" name="nbItem" min="5" max="50">
-        <table>
+    </div>
+        <table id="table">
             <thead>
                 <tr>
                     <th data-column="prenom">
-                        <p class="is-sortable"><img src="" style="display: none;">Prénom</p>
+                        <p class="is-sortable">Prénom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="nom">
-                        <p class="is-sortable"><img src="" style="display: none;">Nom</p>
+                        <p class="is-sortable">Nom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="genre">
-                        <p class="is-sortable"><img src="" style="display: none;">Genre</p>
+                        <p class="is-sortable">Genre<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="pays">
-                        <p class="is-sortable"><img src="" style="display: none;">Pays</p>
-                        <p><input type="text" class="recherche"></p>
+                        <p class="is-sortable">Pays<span class="up">↑</span><span class="down">↓</span></p>
+                        <p>
+                            <select class="recherche" name="pays">
+                                <option value="">-- Aucun --</option>
+                                <option value="United States" data-icon="imgs/pays/en-us.svg">United States</option>
+                                <option value="Great Britain" data-icon="imgs/pays/en-en.svg">Great Britain</option>
+                                <option value="France" data-icon="imgs/pays/fr-fr.svg">France</option>
+                            </select>
+                        </p>
                     </th>
                     <th data-column="age">
-                        <p class="is-sortable"><img src="" style="display: none;">Age</p>
+                        <p class="is-sortable">Age<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="naissance">
-                        <p class="is-sortable"><img src="" style="display: none;">Date de naissance</p>
-                        <p><input type="text" class="recherche"></p>
+                        <p class="is-sortable">Date de naissance<span class="up">↑</span><span class="down">↓</span></p>
+                        <p><input type="text" class="recherche" name="dates"></p>
                     </th>
                 </tr>
             </thead>
-            <tbody></tbody>
-        </table>
-        <p>TODO recherche date de naissance : 2 dates</p>
-        <p>TODO choix de la page à afficher</p>
 
+            <tbody></tbody>
+
+            <tfoot>
+                <tr><td colspan="100"><div id="pages"></div></td></tr>
+            </tfoot>
+        </table>
+</div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script type="text/javascript" src="js/wSelect.js"></script>
+        <script src="js/px-pagination.js"></script>
         <script src="js/pagine.js"></script>
     </body>
 </html>

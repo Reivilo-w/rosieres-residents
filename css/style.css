@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "triplex";
+    src: url('../font/Triseel.ttf');
+}
+
+body {
+    background-color: #555955;
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        margin: 15px 4vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin: 15px 0vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .marge_mobile {
+        margin-left: 4vw;
+        margin-width: 4vw;
+    }
+}
+
+header {
+    background-image: url("../imgs/banniere.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+@media screen and (min-width: 768px) {
+    header img {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 768px) and (min-width: 340px) {
+    header img {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 340px) {
+    header img {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+header hr {
+    background-color: #FFF500;
+    width: 100%;
+    height: 9px;
+    border: none;
+    margin: 0;
+}
+
+
+.pagination{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-family: "triplex", Helvetica, Arial, sans-serif;
+}
+
+
+.pagination div{
+    background-color: #017EFD;
+    border-radius: 200px;
+    margin: 0 10px;
+
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination div:hover{
+    box-shadow: 1px 4px 5px #00000033;
+}
+
+@media screen and (min-width: 340px) {
+    .pagination div {
+        width: 15px;
+        height: 15px;
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 340px) {
+    .pagination div {
+        width: 10px;
+        height: 10px;
+        padding: 5px;
+    }
+}
+
+
+.container_annuaire{
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+}
+@media screen and (min-width: 768px) {
+    .btn_gauche {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (max-width: 768px) {
+    .btn_gauche {
+        display: initial;
+    }
+}
+.btn_gauche input, .btn_gauche button{
+    border: 1px #DCDDDC solid;
+    background-color: #017EFD;
+    color: white;
+    border: none;
+    transition: 0.2s;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-top: .5em;
+    padding: 10px 13px;
+}
+.btn_gauche input{
+    background-color: #E6E6E6;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #017EFD;
+    color: #017EFD;
+    height: 12px;
+}
+.btn_gauche button{
+    height: 45px;
+}
+.btn_gauche button:hover{
+    box-shadow: 0px 0px 4px #000000cc;
+}
+.res_page{
+    font-weight: bold;
+    display: flex;
+}
+.res_page p{
+    margin-right: 5px;
+    font-family: "triplex", Helvetica, Arial, sans-serif;
+}
