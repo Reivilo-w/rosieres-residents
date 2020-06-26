@@ -7,7 +7,7 @@
         <link href="css/px-pagination.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
         <link href="css/style.css" rel="stylesheet">
-              <style>
+        <style>
             @font-face {
                 font-family: 'triplex';
                 src: url('font/triplex.ttf');
@@ -39,7 +39,7 @@
             #table p:nth-child(1) span {
                 font-family: 'arial';
             }
-            #table p:nth-child(1) .up {
+            #table p:nth-child(1) .up,#table p:nth-child(1) .down {
                 margin-left: .5em;
             }
             #table tr th {
@@ -62,7 +62,7 @@
             #table tfoot tr td {
                 background-color: white;
             }
-          </style>
+        </style>
     </head>
 
     <body>
@@ -85,37 +85,37 @@
         <button data-action="reintialiser">Réintialiser les filtres</button>
         <button data-action="rechercher">Rechercher</button>
 
-        <input type="number" name="nbItem" min="5" max="50">
+        <input type="number" name="nbItem" value="15" min="5" max="50">
         <table id="table">
             <thead>
                 <tr>
                     <th data-column="prenom">
-                        <p class="is-sortable"><img src="" style="display: none;">Prénom<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Prénom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="nom">
-                        <p class="is-sortable"><img src="" style="display: none;">Nom<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Nom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="genre">
-                        <p class="is-sortable"><img src="" style="display: none;">Genre<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Genre<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="pays">
-                        <p class="is-sortable"><img src="" style="display: none;">Pays<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Pays<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="age">
-                        <p class="is-sortable"><img src="" style="display: none;">Age<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Age<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="naissance">
-                        <p class="is-sortable"><img src="" style="display: none;">Date de naissance<span class="up">↑</span><span class="down">↓</span></p>
+                        <p class="is-sortable">Date de naissance<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche" name="dates"></p>
                     </th>
                 </tr>
             </thead>
-            
+
             <tbody></tbody>
 
             <tfoot>
