@@ -87,11 +87,12 @@ $(function () {
             $(this).find('span.down').hide('fast');
             $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
+        refreshPagine();
     });
 
     $('[data-action="reintialiser"]').on('click', function () {
         $('input.recherche').val('');
-        $('.is-sortable img').attr('src', '').hide('fast');
+        $('.is-sortable').find('span.up,span.down').hide('fast');
         orderBy = {};
         refreshPagine();
     });
