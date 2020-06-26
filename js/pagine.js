@@ -31,7 +31,7 @@ function refreshPagine() {
         } else {
             for (var k in result.data) {
                 var item = result.data[k];
-                $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img title="' + item.pays + '" src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
+                $('tbody').append('<tr><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img title="' + item.pays + '" src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td><td><a target="_blank" href="https://www.commune-rosieres10.fr/Recherche?id_article=' + item.id + '">' + item.id + '</a></td></tr>');
             }
         }
         $("#pages").pxpaginate({
