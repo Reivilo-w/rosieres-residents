@@ -28,10 +28,12 @@ function refreshPagine() {
 
     $.get('./ajax/ajx_crudPagine.php?method=recherche', params, function (result) {
         $('tbody').html('');
+        $('tfoot').html('');
         for (k in result.data) {
             var item = result.data[k];
             $('tbody').append('<tr data-id="' + item.id + '"><td>' + item.prenom + '</td><td>' + item.nom + '</td><td>' + item.genre + '</td><td><img src="imgs/pays/' + item.drapeau + '.svg" style="width: 30px;"></td><td>' + item.age + '</td><td>' + item.naissance + '</td></tr>');
         }
+        $('tfoot').append('');
     }, 'json');
 }
 
