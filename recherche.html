@@ -4,6 +4,8 @@
         <meta charset="utf-8">
 
         <title>Commune de Rosières</title>
+        <link href="css/px-pagination.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
         <link href="css/style.css" rel="stylesheet">
               <style>
             @font-face {
@@ -108,24 +110,23 @@
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="naissance">
-                        <p class="is-sortable"><img src="" style="display: none;">Date<span class="up">↑</span><span class="down">↓</span></p>
-                        <p><input type="text" class="recherche"></p>
+                        <p class="is-sortable"><img src="" style="display: none;">Date de naissance<span class="up">↑</span><span class="down">↓</span></p>
+                        <p><input type="text" class="recherche" name="dates"></p>
                     </th>
                 </tr>
             </thead>
             
-            <tbody>
-                
-            </tbody>
+            <tbody></tbody>
+
             <tfoot>
-                <tr><td colspan="100" style="text-align: center;"></td></tr>
+                <tr><td colspan="100"><div id="pages"></div></td></tr>
             </tfoot>
         </table>
-        
-        <button data-action="reintialiser">Réintialiser les filtres</button>
-        <button data-action="rechercher">Rechercher</button>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script src="js/px-pagination.js"></script>
         <script src="js/pagine.js"></script>
     </body>
 </html>

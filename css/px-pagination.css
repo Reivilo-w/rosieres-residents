@@ -1,0 +1,50 @@
+.px-paginate-container{
+    user-select: none;
+}
+.px-paginate-container.px-left{
+    float: left;
+    
+}
+.px-paginate-container .d-none{
+    display: none;
+}
+.px-paginate-container.px-center{
+    display: table;
+    margin: 0 auto;    
+}
+.px-paginate-container.px-right {
+    float: right;
+}
+.px-paginate-container .px-btn, .px-paginate-container .px-points{
+    float: left;
+    width: 32px;
+    text-align: center;
+    padding: 6px 0;
+    border: 1px solid #cdcdcd;
+    border-right: none;
+    background: #fff;
+    color: #45afe4;
+}
+/* .px-paginate-container .px-btn-last, .px-paginate-container .px-btn-first{
+    font-weight: bold;
+}
+.px-paginate-container .px-btn-prev, .px-paginate-container .px-btn-next{
+    font-weight: bold;
+} */
+
+.px-paginate-container .px-points{
+    background: #f4f4f4;
+    color: #747474;
+}
+
+.px-paginate-container .px-btn:last-child{
+    border-right:1px solid #cdcdcd;
+}
+.px-paginate-container .px-btn:hover{
+    cursor: pointer;
+    background: rgb(216, 241, 255);
+}
+.px-paginate-container .px-btn.selected{
+    background: #45afe4;
+    color: #fff;
+}
