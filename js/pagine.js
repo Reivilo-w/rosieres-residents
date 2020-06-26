@@ -65,7 +65,7 @@ $(function () {
             refreshPagine();
         }
     });
-
+    refreshPagine();
 
     $('.is-sortable').on('click', function () {
         var column = $(this).closest('[data-column]').data('column');
