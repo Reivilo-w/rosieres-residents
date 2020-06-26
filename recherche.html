@@ -71,21 +71,15 @@
             <img src="imgs/logo.png">
             <hr>
         </header>
-        <!--PAGNIATION-->
-        <div class="pagination">
-            <div><</div>
-            <div>1</div>
-            <div>2</div>
-            <div>...</div>
-            <div>7</div>
-            <div>></div>
+
+<div class="container_annuaire">
+    <div class="btn_gauche">
+        <div class="res_page">
+            <p>Résultats par pages :</p>
+            <input type="number" name="nbItem" value="15" min="5" max="50">
         </div>
-
-
         <button data-action="reintialiser">Réintialiser les filtres</button>
-        <button data-action="rechercher">Rechercher</button>
-
-        <input type="number" name="nbItem" value="15" min="5" max="50">
+    </div>
         <table id="table">
             <thead>
                 <tr>
@@ -122,7 +116,7 @@
                 <tr><td colspan="100"><div id="pages"></div></td></tr>
             </tfoot>
         </table>
-
+</div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
