@@ -5,6 +5,62 @@
 
         <title>Commune de Rosières</title>
         <link href="css/style.css" rel="stylesheet">
+              <style>
+            @font-face {
+                font-family: 'triplex';
+                src: url('font/triplex.ttf');
+            }
+            #table {
+                background-color: white;
+                padding: 30px;
+                margin: 0 auto;
+                border: none;
+            }
+            #table input {
+                border: 1px #DCDDDC solid;
+                background-color: #F5F5F5;
+                width: 100%;
+                border-radius: 4px;
+                margin-top: .5em;
+                padding: 2px;
+            }
+            #table th {
+                width: 100px;
+                padding: 0 15px;
+            }
+            #table p {
+                margin: 0;
+            }
+            #table p:nth-child(1) {
+                font-family: 'triplex';
+            }
+            #table p:nth-child(1) span {
+                font-family: 'arial';
+            }
+            #table p:nth-child(1) .up {
+                margin-left: .5em;
+            }
+            #table tr th {
+                background-color: #FFF;
+                padding-bottom: 10px;
+            }
+            #table tr td {
+                padding: 10px;
+            }
+            #table tr:nth-child(odd) {
+                background-color: #E6E6E6;
+            }
+            #table tr:nth-child(even) {
+                background-color: #F2F2F2;
+            }
+            #table tfoot {
+                background-color: white;
+                border: none;
+            }
+            #table tfoot tr td {
+                background-color: white;
+            }
+          </style>
     </head>
 
     <body>
@@ -23,43 +79,51 @@
             <div>></div>
         </div>
 
+
         <button data-action="reintialiser">Réintialiser les filtres</button>
         <button data-action="rechercher">Rechercher</button>
 
         <input type="number" name="nbItem" min="5" max="50">
-        <table>
+        <table id="table">
             <thead>
                 <tr>
                     <th data-column="prenom">
-                        <p class="is-sortable"><img src="" style="display: none;">Prénom</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Prénom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="nom">
-                        <p class="is-sortable"><img src="" style="display: none;">Nom</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Nom<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="genre">
-                        <p class="is-sortable"><img src="" style="display: none;">Genre</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Genre<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="pays">
-                        <p class="is-sortable"><img src="" style="display: none;">Pays</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Pays<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="age">
-                        <p class="is-sortable"><img src="" style="display: none;">Age</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Age<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                     <th data-column="naissance">
-                        <p class="is-sortable"><img src="" style="display: none;">Date de naissance</p>
+                        <p class="is-sortable"><img src="" style="display: none;">Date<span class="up">↑</span><span class="down">↓</span></p>
                         <p><input type="text" class="recherche"></p>
                     </th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            
+            <tbody>
+                
+            </tbody>
+            <tfoot>
+                <tr><td colspan="100" style="text-align: center;"></td></tr>
+            </tfoot>
         </table>
-        <p>TODO recherche date de naissance : 2 dates</p>
-        <p>TODO choix de la page à afficher</p>
+        
+        <button data-action="reintialiser">Réintialiser les filtres</button>
+        <button data-action="rechercher">Rechercher</button>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/pagine.js"></script>

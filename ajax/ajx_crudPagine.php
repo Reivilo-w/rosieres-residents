@@ -111,10 +111,7 @@ switch ($_GET['method']) {
             $age = $sheet->getCell('F' . $iterator)->getValue();
             $naissance = $sheet->getCell('G' . $iterator)->getValue();
             $id = $sheet->getCell('H' . $iterator)->getValue();
-
             # Faire les traitements ici
-
-
             $data[] = [
                 'prenom' => $prenom,
                 'nom' => $nom,
