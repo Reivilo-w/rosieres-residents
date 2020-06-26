@@ -12,7 +12,12 @@ function refreshPagine() {
     $('tbody').html('<tr><td colspan="100%">Chargement...</td></tr>');
 
     $('th[data-column]').each(function (index) {
-        var val = $(this).find('input.recherche').val();
+        var val = '';
+        if ($(this).find('input.recherche').length > 0) {
+            val = $(this).find('input.recherche').val();
+        } else {
+            val = $(this).find('option:selected').val();
+        }
         if (val !== '') {
             params.search[$(this).data('column')] = val;
         }
@@ -40,6 +45,7 @@ function refreshPagine() {
 $(function () {
     $('span.up').hide();
     $('span.down').hide();
+    $('[name="pays"]').wSelect();
     $('input[name="dates"]').daterangepicker({
         autoUpdateInput: false,
         locale: {
@@ -92,6 +98,7 @@ $(function () {
 
     $('[data-action="reintialiser"]').on('click', function () {
         $('input.recherche').val('');
+        $('[name="pays"]').val('').change();
         $('.is-sortable').find('span.up,span.down').hide('fast');
         orderBy = {};
         refreshPagine();
@@ -109,6 +116,10 @@ $(function () {
     }
 
     $('[data-column] input').enterKey(function () {
+        refreshPagine();
+    });
+
+    $('[name="pays"]').on('change', function () {
         refreshPagine();
     });
 

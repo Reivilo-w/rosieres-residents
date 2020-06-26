@@ -4,9 +4,10 @@
         <meta charset="utf-8">
 
         <title>Commune de Rosières</title>
-        <link href="css/px-pagination.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/px-pagination.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-        <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="Stylesheet" type="text/css" href="css/wSelect.css"/>
         <style>
             @font-face {
                 font-family: 'triplex';
@@ -101,7 +102,14 @@
                     </th>
                     <th data-column="pays">
                         <p class="is-sortable">Pays<span class="up">↑</span><span class="down">↓</span></p>
-                        <p><input type="text" class="recherche"></p>
+                        <p>
+                            <select class="recherche" name="pays">
+                                <option value="">-- Aucun --</option>
+                                <option value="United States" data-icon="imgs/pays/en-us.svg">United States</option>
+                                <option value="Great Britain" data-icon="imgs/pays/en-en.svg">Great Britain</option>
+                                <option value="France" data-icon="imgs/pays/fr-fr.svg">France</option>
+                            </select>
+                        </p>
                     </th>
                     <th data-column="age">
                         <p class="is-sortable">Age<span class="up">↑</span><span class="down">↓</span></p>
@@ -124,6 +132,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script type="text/javascript" src="js/wSelect.js"></script>
         <script src="js/px-pagination.js"></script>
         <script src="js/pagine.js"></script>
     </body>
