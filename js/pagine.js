@@ -65,7 +65,6 @@ $(function () {
             refreshPagine();
         }
     });
-    refreshPagine();
 
 
     $('.is-sortable').on('click', function () {
@@ -88,7 +87,6 @@ $(function () {
             $(this).find('span.down').hide('fast');
             $('.orderBy').append($('<input name="orderBy[' + column + ']" type="hidden" value="asc">'));
         }
-        refreshPagine();
     });
 
     $('[data-action="reintialiser"]').on('click', function () {
