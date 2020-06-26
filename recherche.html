@@ -7,6 +7,10 @@
     </head>
 
     <body>
+        <button data-action="reintialiser">Réintialiser les filtres</button>
+        <button data-action="rechercher">Rechercher</button>
+
+        <input type="number" name="nbItem" min="5" max="50">
         <table>
             <thead>
                 <tr>
@@ -20,16 +24,10 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Mouillet</td>
-                    <td>Lucas</td>
-                </tr>
-                <tr>
-                    <td>Mouillet</td>
-                    <td>Encore Lucas</td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
+            <tfoot>
+                <tr><td colspan="100" style="text-align: center;"></td></tr>
+            </tfoot>
         </table>
         
         <button data-action="reintialiser">Réintialiser les filtres</button>
